@@ -45,7 +45,7 @@ public class SecureRestTemplateConfig {
         SslBundle sslBundle = sslBundles.getBundle("secure-client");
 
         return builder.setSslBundle(sslBundle).build();
-        //return builder.rootUri("https://flowerswithpassion.com.au:8443").setSslBundle(sslBundle).build();
+        //return builder.rootUri("https://localhost:8443").setSslBundle(sslBundle).build();
     }
 
     /*
