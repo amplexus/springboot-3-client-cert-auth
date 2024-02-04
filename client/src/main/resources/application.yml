@@ -1,0 +1,22 @@
+spring:
+  ssl:
+    bundle:
+      jks:
+        secure-client:
+          keystore:
+            location: "classpath:client-cert.p12"
+            password: "secret"
+            type: "PKCS12"
+            # Only need the following if:
+            # (a) my server certificate is not trustworthy and I don't want to disable host validation in code, or
+            # (b) using telstra CAs which are required to trust the naas server certificate
+          truststore:
+            location: "classpath:truststore.jks" # Contains the server certificate
+            password: "secret"
+security:
+  require-ssl: true
+
+server:
+  port: 8444
+  ssl:
+    bundle: "secure-client"
