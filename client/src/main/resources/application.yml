@@ -9,7 +9,7 @@ spring:
             type: "PKCS12"
             # Only need the following if:
             # (a) my server certificate is not trustworthy and I don't want to disable host validation in code, or
-            # (b) using telstra CAs which are required to trust the naas server certificate
+            # (b) using private corporate CAs which are required to trust the remote server certificate
           truststore:
             location: "classpath:truststore.jks" # Contains the server certificate
             password: "secret"
