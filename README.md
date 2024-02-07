@@ -11,7 +11,7 @@ The client will use a cert we create to authenticate to the server.
 
 ## SERVER
 
-The client keystore will contain the fwp certificate and key.
+The client keystore will contain the client certificate and key.
 
 # SETUP
 

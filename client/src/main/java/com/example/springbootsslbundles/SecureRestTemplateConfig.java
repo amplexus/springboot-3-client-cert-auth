@@ -1,4 +1,4 @@
-package com.springboot.springbootsslbundles;
+package com.example.springbootsslbundles;
 
 /*
 import javax.net.ssl.TrustManager;

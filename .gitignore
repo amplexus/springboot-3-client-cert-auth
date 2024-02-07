@@ -4,6 +4,6 @@ target
 *.jks
 *.p12
 .classpath
-.factory
+.factorypath
 .settings
 .project

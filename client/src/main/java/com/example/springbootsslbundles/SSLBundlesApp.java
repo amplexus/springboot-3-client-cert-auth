@@ -1,4 +1,4 @@
-package com.springboot.springbootsslbundles;
+package com.example.springbootsslbundles;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
