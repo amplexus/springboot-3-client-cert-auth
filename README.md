@@ -40,7 +40,13 @@ You can independently verify the server using curl by running `./test_server_usi
 
 ## TESTING
 
-You can run `mvn test` on the client and there is no need to install certificates as the tests yaml doesn't specify any sslbundles. 
+You can invoke the unit tests on the client and there is no need to install certificates as the test's application.yaml doesn't reference any sslbundles:
+
+```
+mvn clean test
+```
+
+The client tests illustrate both unit testing (with mocks) of the service class, and integration testing of the controller (with springboot mvc containers).
 
 I didn't create any tests for the server as the focus for me was on the client implementation and unit testing.
 
