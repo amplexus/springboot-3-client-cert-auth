@@ -16,6 +16,7 @@ public class SecureServiceRestApi {
     private RestTemplate restTemplate;
 
     public String fetchData(String dataId) {
+        log.warn("CRJ::SecureServiceRestApi: fetching data with id {}", dataId);
         log.warn("CRJ::SecureServiceRestApi: using restTemplate: " + restTemplate);
         ResponseEntity<String> response = restTemplate.exchange(
                 "https://localhost:8443/greeting?name=test123", // Must match certificate CN or SAN
@@ -24,7 +25,7 @@ public class SecureServiceRestApi {
                 String.class,
                 dataId
         );
-        log.warn("CRJ::SecureServiceRestApi: fetched data with id {}", dataId);
+        log.warn("CRJ::SecureServiceRestApi: fetched response {}", response);
         return response.getBody();
     }
 }
