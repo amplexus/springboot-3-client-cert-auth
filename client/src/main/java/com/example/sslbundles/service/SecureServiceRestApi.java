@@ -1,4 +1,4 @@
-package com.example.springbootsslbundles;
+package com.example.sslbundles.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpMethod;

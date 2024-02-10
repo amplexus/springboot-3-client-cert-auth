@@ -1,11 +1,9 @@
-package com.example.springbootsslbundles;
+package com.example.sslbundles;
 
 import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
-import static org.hamcrest.Matchers.is;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -22,13 +20,15 @@ import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.web.servlet.MockMvc;
 
+import com.example.sslbundles.controller.SecureServiceController;
+import com.example.sslbundles.service.SecureServiceRestApi;
+
 import lombok.extern.slf4j.Slf4j;
 
-// @SpringBootTest
-@ContextConfiguration(classes = SecureRestTemplateTestConfig.class)
+@ContextConfiguration(classes = SecureServiceTestConfig.class)
 @ExtendWith(MockitoExtension.class)
-@WebMvcTest(MyController.class)
-@Import(MyController.class)
+@WebMvcTest(SecureServiceController.class)
+@Import(SecureServiceController.class)
 @Slf4j
 @WithMockUser
 public class ControllerTest {
@@ -40,7 +40,7 @@ public class ControllerTest {
     private RestTemplateBuilder builder;
     
     @MockBean
-	  private SecureServiceRestApi secureService;
+	private SecureServiceRestApi secureService;
 
     @BeforeEach
     void setMockOutput() {
@@ -54,7 +54,6 @@ public class ControllerTest {
           .contentType(MediaType.APPLICATION_JSON))
           .andExpect(status().isOk())
           .andExpect(jsonPath("$.content").value("Hello, World!"));
-          // .andExpect(content().string("Hello, World!"));
     }
 
 }

@@ -1,4 +1,4 @@
-package com.example.springbootsslbundles;
+package com.example.sslbundles.config;
 
 /*
 import javax.net.ssl.TrustManager;
@@ -35,7 +35,7 @@ import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 @Configuration
-public class SecureRestTemplateConfig {
+public class SecureRestServiceConfig {
 
     // THIS WORKS! But only with p12 certificate, and ONLY if the server cert is trusted by the client
     // NOTE THIS RELIES ON SSL BUNDLES CONFIG IN APP YAML

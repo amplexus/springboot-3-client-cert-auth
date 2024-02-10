@@ -1,15 +1,18 @@
-package com.example.springbootsslbundles;
+package com.example.sslbundles.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.example.sslbundles.model.Greeting;
+import com.example.sslbundles.service.SecureServiceRestApi;
+
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 @RestController()
-public class MyController {
+public class SecureServiceController {
 
 	private static final String template = "Hello, %s!";
 

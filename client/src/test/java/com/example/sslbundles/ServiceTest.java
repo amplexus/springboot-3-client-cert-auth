@@ -1,4 +1,4 @@
-package com.example.springbootsslbundles;
+package com.example.sslbundles;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.when;
@@ -19,8 +19,10 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.web.client.RestTemplate;
 
+import com.example.sslbundles.service.SecureServiceRestApi;
+
 @SpringBootTest
-@ContextConfiguration(classes = SecureRestTemplateTestConfig.class)
+@ContextConfiguration(classes = SecureServiceTestConfig.class)
 @ExtendWith(MockitoExtension.class)
 public class ServiceTest {
 

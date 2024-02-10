@@ -1,4 +1,4 @@
-package com.example.springbootsslbundles;
+package com.example.sslbundles;
 
 import org.springframework.boot.web.client.RestTemplateBuilder;
 import org.springframework.context.annotation.Bean;
@@ -9,7 +9,7 @@ import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 @Configuration
-public class SecureRestTemplateTestConfig {
+public class SecureServiceTestConfig {
 
     @Bean
     public RestTemplate mySecureRestTemplate(RestTemplateBuilder builder) {

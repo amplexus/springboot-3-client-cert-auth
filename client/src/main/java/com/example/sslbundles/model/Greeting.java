@@ -1,4 +1,4 @@
-package com.example.springbootsslbundles;
+package com.example.sslbundles.model;
 
 public record Greeting(String content) { }
 
