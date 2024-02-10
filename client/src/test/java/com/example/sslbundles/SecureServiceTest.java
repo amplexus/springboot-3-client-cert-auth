@@ -24,7 +24,7 @@ import com.example.sslbundles.service.SecureRestApi;
 @SpringBootTest
 @ContextConfiguration(classes = SecureServiceTestConfig.class)
 @ExtendWith(MockitoExtension.class)
-public class ServiceTest {
+public class SecureServiceTest {
 
     @MockBean
     private RestTemplateBuilder builder;
