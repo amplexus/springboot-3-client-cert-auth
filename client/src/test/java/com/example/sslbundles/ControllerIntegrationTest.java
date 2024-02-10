@@ -21,7 +21,7 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.web.servlet.MockMvc;
 
 import com.example.sslbundles.controller.SecureServiceController;
-import com.example.sslbundles.service.SecureServiceRestApi;
+import com.example.sslbundles.service.SecureRestApi;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -31,7 +31,7 @@ import lombok.extern.slf4j.Slf4j;
 @Import(SecureServiceController.class)
 @Slf4j
 @WithMockUser
-public class ControllerTest {
+public class ControllerIntegrationTest {
 
     @Autowired
     private MockMvc mvc;
@@ -40,7 +40,7 @@ public class ControllerTest {
     private RestTemplateBuilder builder;
     
     @MockBean
-	private SecureServiceRestApi secureService;
+	private SecureRestApi secureService;
 
     @BeforeEach
     void setMockOutput() {

@@ -19,7 +19,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.web.client.RestTemplate;
 
-import com.example.sslbundles.service.SecureServiceRestApi;
+import com.example.sslbundles.service.SecureRestApi;
 
 @SpringBootTest
 @ContextConfiguration(classes = SecureServiceTestConfig.class)
@@ -35,7 +35,7 @@ public class ServiceTest {
     private ResponseEntity<String> responseEntity = new ResponseEntity<String>("Hello world", new HttpHeaders(), HttpStatusCode.valueOf(200));
 
     @InjectMocks
-    private SecureServiceRestApi secureService = new SecureServiceRestApi();
+    private SecureRestApi secureService = new SecureRestApi();
 
     @BeforeEach
     void setMockOutput() {

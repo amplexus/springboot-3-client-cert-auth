@@ -10,22 +10,22 @@ import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 @Service
-public class SecureServiceRestApi {
+public class SecureRestApi {
 
     @Autowired
     private RestTemplate restTemplate;
 
     public String fetchData(String dataId) {
-        log.warn("CRJ::SecureServiceRestApi: fetching data with id {}", dataId);
-        log.warn("CRJ::SecureServiceRestApi: using restTemplate: " + restTemplate);
+        log.info("SecureRestApi: fetching data with id {}", dataId);
+        log.info("SecureRestApi: using restTemplate: " + restTemplate);
         ResponseEntity<String> response = restTemplate.exchange(
-                "https://localhost:8443/greeting?name=test123", // Must match certificate CN or SAN
+                "https://localhost:8443/greeting?name=test123", // Hostname must match certificate CN or SAN
                 HttpMethod.GET,
                 null,
                 String.class,
                 dataId
         );
-        log.warn("CRJ::SecureServiceRestApi: fetched response {}", response);
+        log.info("SecureRestApi: fetched response {}", response);
         return response.getBody();
     }
 }

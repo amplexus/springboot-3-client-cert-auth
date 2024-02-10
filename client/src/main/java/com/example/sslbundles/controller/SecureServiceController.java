@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.sslbundles.model.Greeting;
-import com.example.sslbundles.service.SecureServiceRestApi;
+import com.example.sslbundles.service.SecureRestApi;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -17,7 +17,7 @@ public class SecureServiceController {
 	private static final String template = "Hello, %s!";
 
 	@Autowired
-	private SecureServiceRestApi secureService;
+	private SecureRestApi secureService;
 
 	@GetMapping("/hello")
 	public Greeting hello(@RequestParam(value = "name", defaultValue = "World") String name) {
