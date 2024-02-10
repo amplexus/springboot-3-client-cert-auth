@@ -1,6 +1,6 @@
 spring:
 security:
-  require-ssl: false
+  require-ssl: true
 
 server:
   port: 8444

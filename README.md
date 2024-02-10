@@ -31,6 +31,12 @@ And finally, in another window/tab run the `./test_client_using_curl.sh` script.
 
 You can independently verify the server using curl by running `./test_server_using_curl.sh`.
 
+## TESTING
+
+You can run `mvn test` on the client and there is no need to install certificates as the tests yaml doesn't specify any sslbundles. 
+
+I didn't create any tests for the server as the focus for me was on the client implementation and unit testing.
+
 ## NOTES
 
 - You don't need to add the client or server certs to the jvm cacerts or to the linux trusted certs
