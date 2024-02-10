@@ -9,17 +9,24 @@ In this demo, we have two web service apps:
 1. The "server" app which listens on port 8443 and requires client certificate authentication
 2. The "client" app which listens on port 8444 and uses client certificate authentication to communicate with the above server
 
-The `./install_certs.sh` script is used to generate and install the certificates into both the client and server `src/main/resources` directories.
+The client has a springboot restful service that communicates with the server's restful service that is protected with client certificate authentication.
 
-The client and the server will pick these certificates up at launch time and use them for client certificate authentication.
+The `./install_certs.sh` script is used to generate and install the certificates into both the client and server `src/main/resources` directories. Essentially it does the following:
+- creates client cert and key and installs them in the client keystore (which it creates and protects with a password)
+- installs the client cert in the server truststore
+- creates server cert and key and installs them in the server resources folder (they are referenced by filename in the server's application.yaml)
+- installs the server cert in the client truststore
+
+The client and the server will pick their respective keystores and truststores up at launch time and use them for client certificate authentication.
+
+## PRE REQUISITES
+
+- Java 17+
+- Maven 3
 
 ## SETUP
 
-First, run `./install_certs.sh` which will:
-- create then install the client key and cert in the `client` keystore (i.e. `client/src/main/resources`)
-- install the client cert in the `server` truststore
-- create then install the server key and cert in the `server` keystore (i.e. `server/src/main/resources`)
-- install the server cert in the `client` truststore
+After cloning this repo, run `./install_certs.sh` to create the certificates, keys, keystores and truststores.
 
 ## RUN THE DEMO
 
