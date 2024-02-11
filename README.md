@@ -21,8 +21,11 @@ The client and the server will pick their respective keystores and truststores u
 
 ## PRE REQUISITES
 
-- Java 17+
-- Maven 3
+- Java 17+ (`sudo apt install openjdk-17-jre`)
+- Maven 3 (`sudo apt install maven`)
+- Git (`sudo apt install git`)
+- OpenSSL (`sudo apt install openssl`)
+- Curl (`sudo apt install curl`)
 
 ## SETUP
 
