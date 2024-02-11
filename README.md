@@ -13,9 +13,9 @@ The client has a springboot restful service that communicates with the server's 
 
 The `./install_certs.sh` script is used to generate and install the certificates into both the client and server `src/main/resources` directories. Essentially it does the following:
 - creates client cert and key and installs them in the client keystore (which it creates and protects with a password)
-- installs the client cert in the server truststore
+- installs the client cert in the server truststore - this is so the server knows to trust any client presenting this certificate
 - creates server cert and key and installs them in the server resources folder (they are referenced by filename in the server's application.yaml)
-- installs the server cert in the client truststore
+- installs the server cert in the client truststore - this is so the client knows to trust the server with a hostname that matches the certificate
 
 The client and the server will pick their respective keystores and truststores up at launch time and use them for client certificate authentication.
 
