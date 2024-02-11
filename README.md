@@ -15,7 +15,7 @@ The `./install_certs.sh` script is used to generate and install the certificates
 - creates client cert and key and installs them in the client keystore (which it creates and protects with a password)
 - installs the client cert in the server truststore - this is so the server knows to trust any client presenting this certificate
 - creates server cert and key and installs them in the server resources folder (they are referenced by filename in the server's application.yaml)
-- installs the server cert in the client truststore - this is so the client knows to trust the server with a hostname that matches the certificate
+- installs the server cert in the client truststore - this is so the client knows to trust the server with a hostname that matches the certificate's DN (Distinguished Name) or SAN (Subject Alternate Name)
 
 The client and the server will pick their respective keystores and truststores up at launch time and use them for client certificate authentication.
 
@@ -27,6 +27,7 @@ The client and the server will pick their respective keystores and truststores u
 ## SETUP
 
 After cloning this repo, run the certificate generation script to create the certificates, keys, keystores and truststores.
+
 ```
 git clone https://github.com/baeldung/spring-boot-ssl-bundles
 cd spring-boot-ssl-bundles
