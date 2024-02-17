@@ -4,14 +4,16 @@ spring:
       jks:
         secure-client:
           keystore:
-            location: "classpath:client-cert.p12"
+            # location: "classpath:client-cert.p12"
+            location: "file:/massl/client-cert.p12"
             password: "secret"
             type: "PKCS12"
             # Only need the following if:
             # (a) my server certificate is not signed by a well known cert authority, and I don't want to disable host validation in code, or
             # (b) using private corporate CAs which are required to trust the remote server certificate
           truststore:
-            location: "classpath:truststore.jks" # Contains the server certificate
+            location: "file:/massl/truststore.jks"
+            # location: "classpath:truststore.jks" # Contains the server certificate
             password: "secret"
 security:
   require-ssl: true

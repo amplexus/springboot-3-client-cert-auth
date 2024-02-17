@@ -1,0 +1,189 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: client
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: client
+  template:
+    metadata:
+      labels:
+        app: client
+    spec:
+      initContainers:
+        - name: init-massl
+          image: openjdk:17-jdk-slim-buster
+          imagePullPolicy: IfNotPresent
+          env:
+            - name: KEYSTORE_PASSWORD
+              value: secret
+            - name: TRUSTSTORE_SERVER_CERT
+              value: |+
+                -----BEGIN CERTIFICATE-----
+                MIIF1TCCA72gAwIBAgIULNANo0wLktp3ciCRpx1n/bPe12MwDQYJKoZIhvcNAQEL
+                BQAwejELMAkGA1UEBhMCQVUxGDAWBgNVBAgMD05ldyBTb3V0aCBXYWxlczEVMBMG
+                A1UEBwwMTW91bnQgRHJ1aXR0MREwDwYDVQQKDAhBY21lIEx0ZDETMBEGA1UECwwK
+                U2FsZXMgRGVwdDESMBAGA1UEAwwJbG9jYWxob3N0MB4XDTI0MDIxNzA0MzczOVoX
+                DTM0MDIxNDA0MzczOVowejELMAkGA1UEBhMCQVUxGDAWBgNVBAgMD05ldyBTb3V0
+                aCBXYWxlczEVMBMGA1UEBwwMTW91bnQgRHJ1aXR0MREwDwYDVQQKDAhBY21lIEx0
+                ZDETMBEGA1UECwwKU2FsZXMgRGVwdDESMBAGA1UEAwwJbG9jYWxob3N0MIICIjAN
+                BgkqhkiG9w0BAQEFAAOCAg8AMIICCgKCAgEAthHFIQmLvq6W1UnZVmGBfh0uQxzJ
+                5VzCCwg2o4nF+qwvSOu3+m6zyRCHOmCkeGkEH7aE71wnQgMo+VGUkRXK0YHzzbBS
+                mCnZM+c6YJEKAgvYymJTxH+ni9ZW+8Bkgmh/TEkfQ2F5B05LsSaI4v+Bg9tWiUSW
+                fGY8JjpEcAF+K5LPAp7hmjGIcSR1HtkJnvIcuF9zNyE2AEz7SPY0MvObxOwDXaXu
+                iDbox/m+YZRPdzwAxNl79chenES6lGlVRyqx3SdrXo6xYI5xRp84Fg9V++Jc5h45
+                xIs1Vjv4cRqEdq2YA4thCoX0YpZan40WisMNOyzaUZy+NOr4FzY5HvaDkqcaX4CB
+                qXntWJ/m2nbmRmi2OhzcG7Yj2JxygfLK4wmeNJkCIcSVuy3CaBM0wkHQxmtZvGEG
+                toVzcjjWHpQQk+eL5fZYOuXpPQZrQYPM0R+8WbrmmLbs/PESAK2BTCgtCJmzUrfS
+                0S9w0Sp8ecyezkoPAL4aCa+FrafvXTx0j2m9x0xpXN3+JOj5YUK21h0Fyx/rGD7n
+                bI20rGbf0dsZx9d6tk05WvqmoamoKwU8XFavvFo1ccBU2C1E6GpLEV19CfVeWeN9
+                QEa50PKSqFgJYF33XPlYbGLBUz1LDQ5fnWVGw5g4BMoOyxGOEZqAG3hbEkOi89O8
+                xIgsGtVbRBNdBw8CAwEAAaNTMFEwHQYDVR0OBBYEFF8+rkm6dVi1tkPaWEhDlP+2
+                pTFOMB8GA1UdIwQYMBaAFF8+rkm6dVi1tkPaWEhDlP+2pTFOMA8GA1UdEwEB/wQF
+                MAMBAf8wDQYJKoZIhvcNAQELBQADggIBAB5O8fuXifMY6vs3LZfvZaqigGAZyWIR
+                iGJM8758sbW1gfaFGUl4xvxbKNQn0h2nkE4wJPPqq4qhzzeKZ1BZZk99d2RIwvxm
+                RR+YYDNq+6oFWcvlPU4ZSDg1/SJ2IYhKaQ4OkWBGRULVUbZkYPaHu5CUVBxxQlRk
+                Bh8NV1Q8PvvaaRdYZ3BAvHYzz9/sUanBhwD93Xd/7ooyxPzfL5PVjURI6nfTjoGC
+                5K4wO9BzJ/jaRLtri+alD8HVlyWVd+YGX/Lqens/L3bCQeEkwUFOybKAjU10vSn+
+                krsy8COfANOXehY+s887aFFmX1Rg83qzuEcSZqr8+Jz+DWaoKsQXS22kC3De/xIz
+                rxgmSYaE8MpvI1X4yTPyytt+D7grJHVLAskLyKZ+4YlpYtWQF5vfCHuHM8W8SjSa
+                UNiZg9U7BxPB1TVnosxa/lnWCDoNTOtYdA4Zp06mKvdNfRjEhdSTRG1SJ25FT6Pl
+                5PJoCrnApwrmzvpwNTnOrCG9/4PC5+OT5lMUl3XBfKJ43UORD6fxv8yQruW5jx4/
+                VSaLfF0EeIJg63AxjFMlI77yG7piycwtBx9xuEwH6LlhlwFJ/s42LeeI72yg8gKt
+                ulbHVlXPO5IyCkDfZYj8wgpah9eKyUXPOtUJP4ym5goHiigCE6P0I4HBSXHJn6nv
+                oiuunxvj26Jb
+                -----END CERTIFICATE-----
+                
+            - name: KEYSTORE_CLIENT_CERT
+              value: |+
+                -----BEGIN CERTIFICATE-----
+                MIIFyzCCA7OgAwIBAgIUCarsDKSHE/xnZj97dekWZN3H9t0wDQYJKoZIhvcNAQEL
+                BQAwdTELMAkGA1UEBhMCQVUxGDAWBgNVBAgMD05ldyBTb3V0aCBXYWxlczEPMA0G
+                A1UEBwwGU3lkbmV5MREwDwYDVQQKDAhBY21lIEx0ZDEWMBQGA1UECwwNQWNjb3Vu
+                dHMgRGVwdDEQMA4GA1UEAwwHa3VidW50dTAeFw0yNDAyMTcwNDM3MzhaFw0zNDAy
+                MTQwNDM3MzhaMHUxCzAJBgNVBAYTAkFVMRgwFgYDVQQIDA9OZXcgU291dGggV2Fs
+                ZXMxDzANBgNVBAcMBlN5ZG5leTERMA8GA1UECgwIQWNtZSBMdGQxFjAUBgNVBAsM
+                DUFjY291bnRzIERlcHQxEDAOBgNVBAMMB2t1YnVudHUwggIiMA0GCSqGSIb3DQEB
+                AQUAA4ICDwAwggIKAoICAQDlzDWjzxjabkF2hjQVN+FjFX3XpXR0Id8/5KDz7dlv
+                hqBUO3pCL4aQQMc6V0w+AEgjQF/sV0jN2nUd1Ccx9aGTkqW7HEuPLYGL4Nm5AYAR
+                bd13IPYe+vuR07UbcUYZoKylJ7djjfMmZcs9tAihlsw+yd8c0YI2vzjH3UC2ZSs6
+                1t8Vj3eiJU30hgIEPKvuT2FINGRlTzIEq5X4t8ET2UWKOmi+2S5L47zKrxkYp3+i
+                anksQnBVXQK5W9drd0yvQ98/FgNlRs0mypoWRgdcdP8/VNMqITTgRxwe5N5n4+Y/
+                P9p6r8sgGTor4c227SzZrwwHDeZMYmhpZpCxzu/76YnKrq+XfwL3K0S636TdUDxq
+                wBsYr8uI6yNgTajnQj892qDeitQSslqobxva5iDL4jv22LswcFIOP3RDifXSwHP6
+                BW7QwKv+mSi/0Opir6y+x+eg2ZMXlAE5w2GEk4e2TrzgLEr8ei8iWJXastljan8x
+                8f/vNu9cJsDKwB3LYHi3/eWBxtPPu8eE0dHd3YziXy4bh4N/FAsI7Qp7/BHBs2ye
+                Bg9+wODOU9674StVugCBbjHEgQu8f/QkoZckh/ZYeTpBO+McygX3yT26/Uvs/CrE
+                U2fP7KF3b8XXocDBt1/6U1REcFTtkPreGk0wy7AkGhTaVf+rk9vBYWsg6sa1+j05
+                lwIDAQABo1MwUTAdBgNVHQ4EFgQUPP18FySxVgeV99BAxV4te4Sd3ycwHwYDVR0j
+                BBgwFoAUPP18FySxVgeV99BAxV4te4Sd3ycwDwYDVR0TAQH/BAUwAwEB/zANBgkq
+                hkiG9w0BAQsFAAOCAgEAu5Whau1VZ3v+iI1MYhZjPAlSanV36ENhvfvaKpDFcRvr
+                /gIStcD3gDep/Jz0ksedRv5rzOTHoxJC6wOHYRtTJ/lfx31b545EWiQekyVfibWz
+                d7smEB1kK2+1r9ja+3KUkqdTjrgC5C/FfL1k4aT4SL6MqrhqpeVCGINM3PKlLBrT
+                micw4vsAQB3sH/zHjKDCTTQdMYdmKRxwLk8GvzbOKoLAU9iCbUNwXNu7y1v0+K2l
+                Tg4HvRkqz2XGXG8n9nSyF5tmWmgPt0nxRbs/8+kgC0kRq4WISRA4Xycsq4xY0F5z
+                CgMjCrfl5scei+Eqhi9sOc1wJMWUj3AtKHDGkJX4TGbHZDjBGBlSJ01W8GPdlNAM
+                loXO/1Xhata9oe/TgbqlHjt/YveKc6kA6g2oKA1FeUqyORmfNVYtHpPtAVACIqzG
+                fujJLnPCEASk4gE5hd9+I79MOy0ldph30WKR9w/05d6nkj10TJAU3QM1TlkRIKcx
+                oRifq1BtWidaP5+GiwG+rJghDyt+yAmdk2QHtyeRppaN5eiAUTeJ1d4M8WxO3+0e
+                qAG1AlKGSMsyxz694cPhuuMgmID9X8327PBz1pRqhdZxJiMxZooQdvzZtfBN1IgE
+                m13raXldHsBcEd+XBVDgfkrUH9MNTJjQTprvrgRqzM7vPLlv2HTkQ533aIr6E5E=
+                -----END CERTIFICATE-----
+
+            - name: KEYSTORE_CLIENT_KEY
+              value: |+
+                -----BEGIN PRIVATE KEY-----
+                MIIJQwIBADANBgkqhkiG9w0BAQEFAASCCS0wggkpAgEAAoICAQDlzDWjzxjabkF2
+                hjQVN+FjFX3XpXR0Id8/5KDz7dlvhqBUO3pCL4aQQMc6V0w+AEgjQF/sV0jN2nUd
+                1Ccx9aGTkqW7HEuPLYGL4Nm5AYARbd13IPYe+vuR07UbcUYZoKylJ7djjfMmZcs9
+                tAihlsw+yd8c0YI2vzjH3UC2ZSs61t8Vj3eiJU30hgIEPKvuT2FINGRlTzIEq5X4
+                t8ET2UWKOmi+2S5L47zKrxkYp3+ianksQnBVXQK5W9drd0yvQ98/FgNlRs0mypoW
+                RgdcdP8/VNMqITTgRxwe5N5n4+Y/P9p6r8sgGTor4c227SzZrwwHDeZMYmhpZpCx
+                zu/76YnKrq+XfwL3K0S636TdUDxqwBsYr8uI6yNgTajnQj892qDeitQSslqobxva
+                5iDL4jv22LswcFIOP3RDifXSwHP6BW7QwKv+mSi/0Opir6y+x+eg2ZMXlAE5w2GE
+                k4e2TrzgLEr8ei8iWJXastljan8x8f/vNu9cJsDKwB3LYHi3/eWBxtPPu8eE0dHd
+                3YziXy4bh4N/FAsI7Qp7/BHBs2yeBg9+wODOU9674StVugCBbjHEgQu8f/QkoZck
+                h/ZYeTpBO+McygX3yT26/Uvs/CrEU2fP7KF3b8XXocDBt1/6U1REcFTtkPreGk0w
+                y7AkGhTaVf+rk9vBYWsg6sa1+j05lwIDAQABAoICAB663EF3pF8xd1eeQsDDpERX
+                z2hTG+uby/sDW/LCz9z2J+KbwZGwQVJxFzNaETwJVZxBM5KraXT9zcObZ1JrApx1
+                c+w9sG0JLNXDz9nJtZKfGoqfwcoKzjGGGiX9U96BehTr5r5NcUKlQjSSKsVRIScU
+                X92+tqcTk0hG8ixyAwHvUg3UDa+FRZN5iDOA2Y0Y2G2LdBGIMawmNfv4tr0sxPvj
+                K7a53FMRtWF1YOnHHG5fxqyAhf0kXwTin0AjyAF4Fhadnv6gJTcWyNxJqRpYGvoh
+                Icv0fNmxKLWI7aT++P9kTpcxgvxb40eS/quDtAe4POeEmFOGpWfS626bucP6Sw6q
+                uDOrfJA3SqGeJdh9tChcTpp/EgbKcZVqkT9866xXYwyU13jaIaGzDoxWdcdBPGF2
+                4pb/c5+dp1+LxT01pNiTlVvC8NA1wxbtbqy7BZuTsBUiAIVQBov0dzB/KY448DO4
+                qbwLnecQrs/ijyPD9E26N0GlMe8qoPOXgzatA+/b1SLZC3sHCEf+oACSB+JhrOrQ
+                j4AtNoSJY2ssJ2jvOHgIwjbjC1DykMfdbOpT/pMDjDpVC0ae/1ZRF1Ixyabhg5pl
+                yeEAthjiqqObDaFqN3ug+m9TLteCkujaeQTOSd2r48I/Allavj9OfuuY/A6/iE78
+                0OnMuHrTNN61QU9sb77hAoIBAQD88HovpjYozPSPzESjCQ9Jz3TwEoAKyEDsTjfA
+                qDSIRRqOmSSIKY4bGEXZM3OotA5UUH8pxgjccCDgwY1a3DexADQKmFgAhasTn66T
+                par4elkxlTrTzfa117ZnIsElRj847gTYHfvveSYQKyVCER0VOVK68rbdRwIzQcVg
+                hcJGTUrcDyd0XulkNUZY7+I8pGzo7zUIG8zBLM4U4cMqME8b+OBQ5dOGKmwWDShP
+                78XjIsgyq+ojKv4gZ5SGyEjBQtKtQ9oqM3+zr3TmobnxiysAF479AGhGltoQLJp5
+                qd9TI2mpE55x5xVzyRwZ2vbV1RTgKWgoNccI7fyH/vlAbSRbAoIBAQDolAwGy/7w
+                n/ENnNAwgvujbTVI4Sx/1XW4ynFmY/CUKHkXzaJJqp+B7O7BYrhqB+NH5Ccb8KYf
+                oMjzm/9w+7Xum0PJONTKULABttXxqaUflxXSH4hgCy+Rtg9rT+K+t1b28VXigbT/
+                qojliuOD6jwqGKNdYv0ExPbsPLRSIRY0s/HMyenA8bDXlk5Q1tM44AOFKDBv/TR2
+                aYW4178/d6+Brt+3EpT6wTXKRvZa92gsUncRzamimY63AH8HukB3R9JMmThEPp4m
+                +qLtngi/0Y2guB30AX3iqEnxVYwYekiicSwE7htyC+VBRBt5aIWcYBAW2P28M9ZA
+                MdcXarYhtZR1AoIBAQDNnEYW2cwI2qKrCed5iHHPFD8AsGk5WpO8A9E6YQFjDJmL
+                9V1G+lC0IcUVzMdmCgfj7hOQx5SIbPWs/mmDxKPY1Et5mWFf+0iYCSQGjZMvrXU3
+                4xEQ/8pfA10Y9Z2ASVw3UPTLIYScpCSW3BvLWtIDYLeplIel1IUrWXmy/shwEYCa
+                5g6ygDzE4rGutkF3/kkyCNFZKBAHr/5N5z+Y2fBU0ri1yj1qQK3gNw3f/Q8lli6b
+                UjhgIiC2Ar0v2zuZLlLH2fJMf9R9IlGq8SiP+wsXZg8sBtq9Fv9oSnnAEKCjmpPX
+                h0UzXh+IIaEgO2iPZkkz9zTeCukijyLLAi9nedElAoIBAE5oSr2n3CSm5w8dxJn2
+                Lntj/8i4ENZv0iYgKabJHnv0QQ6jRojrOqcEh2EutNkaG6dK5Vxn/rk+7UAjYTRn
+                x2fPdETMIgCqvwt05h94f7BssPCLrOAkJT9MT1pwLhL5oBnUNo4MCEcA6PHpptX8
+                C5htgfWjv4TyGgR+WpQtj1zpJSVTFLj1QhcMFw7tvXu5Gba0W9AFXsBkxq4QHet5
+                n/NqTwVbAFqg9E9jKP511erLSlT4Lq4gcpqDUk/6nG0aC23DYdKwAYVGjdLpqi1w
+                qfx61a5DKntVHMh9fKNr5jzNRnfLBfmmxP0BxvlhIVockJADS1c9aodtxgOg+BHZ
+                M1kCggEBAPqLaX8XtM+mguUFMNVAa+0B0UyoZhMfZSRynyxpmcrJP+h+Llgy7rbT
+                yugjHFOBtAA3qmXoW9luLxUCnCenvmecaxUkMgWqyFa1ikLo2imVeU1PPZczttoK
+                HVHAw1ObXC+0275m3P+TwZcktnd4F4DmL7rA89NPtz451o1lZYPK6hZqZHrvuKyT
+                gphV+stro3zzXC8cDK7mYUYWs0YBvEYEptnG55nEKMZhFHNB7kLAUAWVDFlqZ0NB
+                ZhcJD7vFUIz2UxkaLgvP7Z/HZC6kJOd2HC4yejd06X6ZThBBdUaS3iqcWce6bRK/
+                TaGC/SnMmavqXf8Lm8fG6LBhSLpXykg=
+                -----END PRIVATE KEY-----
+          command:
+          - bash
+          - -c
+          - |
+            # Save the certs locally
+            echo "${KEYSTORE_CLIENT_KEY}" > /massl/client-key.pem
+            echo "${KEYSTORE_CLIENT_CERT}" > /massl/client-cert.pem
+            echo "${TRUSTSTORE_SERVER_CERT}" > /massl/server-cert.pem
+
+            ls -l /massl/
+
+            # Generate keystore
+            openssl pkcs12 -export -in "/massl/client-cert.pem" -inkey "/massl/client-key.pem" -out "/massl/client-cert.p12" -name "client" -passout "pass:${KEYSTORE_PASSWORD}"
+
+            # Generate truststore
+            keytool -noprompt -keystore "/massl/truststore.jks" -alias "server" -import -file "/massl/server-cert.pem" -storepass "${KEYSTORE_PASSWORD}"
+
+            ls -l /massl/
+
+            rm -f /massl/client-key.pem
+            rm -f /massl/client-cert.pem
+            rm -f /massl/server-cert.pem
+
+          volumeMounts:
+          - mountPath: /massl
+            name: massl
+      containers:
+        - name: app
+          image: springboot-sslbundle-client:1.0
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 8080
+          env:
+            - name: KEYSTORE_PASSWORD
+              value: secret
+          volumeMounts:
+          - mountPath: /massl
+            name: massl
+      volumes:
+      - name: massl
+        emptyDir: {}
