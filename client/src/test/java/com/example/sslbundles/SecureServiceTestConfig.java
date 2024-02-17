@@ -13,7 +13,7 @@ public class SecureServiceTestConfig {
 
     @Bean
     public RestTemplate mySecureRestTemplate(RestTemplateBuilder builder) {
-        return builder.build();
+        return builder.build(); // Skip/bypass sslbundles configuration which isn't needed for unit testing
     }
 }
 

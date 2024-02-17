@@ -50,6 +50,7 @@ public class ControllerIntegrationTest {
 
     @Test 
     void someTest() throws Exception {
+        log.info("executing someTest");
         mvc.perform(get("/hello")
           .contentType(MediaType.APPLICATION_JSON))
           .andExpect(status().isOk())
